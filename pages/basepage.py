@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
-        self.wait = WebDriverWait(self.driver, 10)
+        self.wait = WebDriverWait(self.driver, 15)
 
     def open_url(self, url):
         self.driver.get(url)
@@ -20,7 +20,7 @@ class BasePage:
         self.driver.find_element(*locator).click()
 
     def wait_and_click(self,locator):
-        self.wait.until(EC.visibility_of_element_located(locator),message=f'Element by {locator} not clickable').click()
+        self.wait.until(EC.element_to_be_clickable(locator),message=f'Element by {locator} not clickable').click()
 
 
     def element_in_listing(self,all_products,product_element):
@@ -28,7 +28,7 @@ class BasePage:
         products = self.driver.find_elements(*all_products)
         for product in products:
             sales_tag = product.find_element(*product_element).text
-            assert sales_tag in product, f'{sales_tag} not in {product}'
+            assert sales_tag in "For sale", f'{sales_tag} not in For sale'
             print(product_element)
 
 

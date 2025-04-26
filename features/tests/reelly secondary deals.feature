@@ -5,7 +5,7 @@ Feature: Reelly
     When Enter email
     And Enter password
     And Click continue button
-    And Click on the “Secondary” option at the left side menu
+    When Click on the “Secondary” option at the left side menu
     Then Verify the right page opens
     And Click Filter button
     Then Wait for side Navigation to pop up

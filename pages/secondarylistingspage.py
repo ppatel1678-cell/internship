@@ -13,6 +13,8 @@ class SecondaryListingPage(BasePage):
     WHOLE_LISTING = (By.CSS_SELECTOR, "[wized='listingCardMLS']")
     SALE_TAG = (By.CSS_SELECTOR, "[wized='saleTagMLS']")
 
+
+
     def verify_secondary_url(self):
         self.verify_url("https://soft.reelly.io/secondary-listings")
 
@@ -23,6 +25,7 @@ class SecondaryListingPage(BasePage):
 
     def wait_for_side_nav(self):
         self.wait.until(EC.visibility_of_element_located(self.SIDE_POP))
+        sleep(2)
 
 
     def want_to_sell_button(self):
