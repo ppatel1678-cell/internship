@@ -1,3 +1,4 @@
+import allure_behave
 from allure_behave.utils import scenario_name
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -7,13 +8,16 @@ from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.chrome.options import Options
 from applications.applications import Application
 
-
+#behave -f allure_behave.formatter:AllureFormatter -o test_results/ features/tests/reelly_secondary_deals.feature
 
 
 def browser_init(context,scenario_name):
     """
     :param context: Behave context
     """
+    driver_path = ChromeDriverManager().install()
+    service = Service(driver_path)
+    context.driver = webdriver.Chrome(service=service)
 
 
     #Headless mode
@@ -22,18 +26,18 @@ def browser_init(context,scenario_name):
     # service=Service(ChromeDriverManager().install())
     # context.driver = webdriver.Chrome(service=service, options=options)
 
-    bs_user = 'poojap_n58Du0'
-    bs_key = 'jFHNdxSxEVo9CJ5NkVsV'
-    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
-
-    options = Options()
-    bstack_options = {
-        "os": "Windows",
-        "osVersion": "11",
-        'browserName': 'edge',
-        'sessionName': scenario_name}
-    options.set_capability('bstack:options', bstack_options)
-    context.driver = webdriver.Remote(command_executor=url, options=options)
+    # bs_user = 'poojap_n58Du0'
+    # bs_key = 'jFHNdxSxEVo9CJ5NkVsV'
+    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    #
+    # options = Options()
+    # bstack_options = {
+    #     "os": "Windows",
+    #     "osVersion": "11",
+    #     'browserName': 'edge',
+    #     'sessionName': scenario_name}
+    # options.set_capability('bstack:options', bstack_options)
+    # context.driver = webdriver.Remote(command_executor=url, options=options)
     # #
     context.driver.maximize_window()
     context.driver.wait = WebDriverWait(context.driver, 15)
