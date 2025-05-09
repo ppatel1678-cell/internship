@@ -8,6 +8,7 @@ class SideNavigationPage(BasePage):
 
     def click_secondary_button(self):
         self.wait_and_click(self.SECONDARY)
+        sleep(3)
 
 
 

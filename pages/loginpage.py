@@ -14,10 +14,10 @@ class LoginPage(BasePage):
         self.open_url("https://soft.reelly.io/sign-in")
 
     def input_email(self):
-        self.input_text("****",*self.EMAIL)
+        self.input_text("*****",*self.EMAIL)
 
     def input_password(self):
-        self.input_text("***",*self.PASSWORD)
+        self.input_text("****",*self.PASSWORD)
 
     def click_continue(self):
         self.click(*self.CONTINUE)

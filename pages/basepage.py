@@ -7,17 +7,22 @@ class BasePage:
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 15)
 
+
     def open_url(self, url):
         self.driver.get(url)
+
 
     def find_element(self,*locator):
         return self.driver.find_element(*locator)
 
+
     def input_text(self,text,*locator):
         self.driver.find_element(*locator).send_keys(text)
 
+
     def click(self,*locator):
         self.driver.find_element(*locator).click()
+
 
     def wait_and_click(self,locator):
         self.wait.until(EC.element_to_be_clickable(locator),message=f'Element by {locator} not clickable').click()
@@ -35,6 +40,7 @@ class BasePage:
     def verify_partial_text(self,expected_text,*locator):
         actual_text = self.find_element(*locator).text
         assert expected_text in actual_text, f'Expected {expected_text} but got {actual_text}'
+
 
     def verify_url(self,expected_url):
         actual_url = self.driver.current_url
